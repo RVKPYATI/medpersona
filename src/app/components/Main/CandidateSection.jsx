@@ -41,10 +41,7 @@ export const CandidateSection = () => {
             </label>
             <input type="file" className="hidden" id="inputFile" />
 
-            <Button
-              title="ОТПРАВИТЬ"
-              style="bg-[#2C598D] w-full md:w-64 mb-2"
-            />
+            <Button title="ОТПРАВИТЬ" style="bg-blue2 w-full md:w-64 mb-2" />
           </div>
         </form>
       </div>
