@@ -53,7 +53,7 @@ export const NavLinks = ({ show }) => {
           />
           <ul
             onClick={toggleOpen}
-            className={`absolute t-0 right-0 left-0 bottom-0 w-screen h-screen bg-blue p-4 text-center text-lg ${
+            className={`absolute top-0 right-0 left-0 bottom-0 w-screen h-screen bg-blue p-4 text-center text-lg ${
               openMenu ? "block" : "hidden"
             }`}
           >
