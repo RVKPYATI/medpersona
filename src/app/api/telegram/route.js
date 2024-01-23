@@ -17,7 +17,7 @@ export async function POST(req) {
 
     await writeFile(path, buffer); //Запись в файл
     await sendMessageTelegram(path, name, phone, doctor); //Отправка файла в телеграм
-    await unlink(path); //Удаление файла
+    //await unlink(path); //Удаление файла
   }
 
   await sendMessageTelegram(undefined, name, phone, doctor);
