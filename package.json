@@ -15,7 +15,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-text-mask": "^5.5.0",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "telegraf": "^4.15.3"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
