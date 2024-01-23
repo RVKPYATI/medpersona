@@ -22,5 +22,5 @@ export async function POST(req) {
 
   await sendMessageTelegram(undefined, name, phone, doctor);
 
-  return NextResponse.json({ message: "Success" }, { status: 201 });
+  return NextResponse.json({ message: "Success" }, { status: 200 });
 }
