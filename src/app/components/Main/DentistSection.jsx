@@ -1,6 +1,6 @@
 import { DentistOrder } from "./DentistOrder";
 
-export const DentistSection = () => {
+export const DentistSection = ({ openModal }) => {
   return (
     <section className="container mx-auto px-3 pb-14">
       <h2 className="text-black15 text-[43px] font-extrabold text-center md:text-left">

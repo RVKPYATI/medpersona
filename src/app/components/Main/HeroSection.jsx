@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "../ui/Button/Button";
 
-export const HeroSection = () => {
+export const HeroSection = ({ openModal }) => {
   return (
     <section
       style={{
@@ -19,7 +19,7 @@ export const HeroSection = () => {
             сторонние агенства по подбору персонала не имеют компетенций закрыть
             узкие профильные задачи медицинского подбора кадров!
           </p>
-          <Button title="Оставить заявку" />
+          <Button title="Оставить заявку" onClick={openModal} />
         </div>
         <div>
           <Image

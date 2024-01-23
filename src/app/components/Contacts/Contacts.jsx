@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "../ui/Button/Button";
 
-export const Contacts = () => {
+export const Contacts = ({ openModal }) => {
   return (
     <div className="hidden items-center md:flex">
       <div className="flex flex-col items-end">
@@ -16,7 +16,7 @@ export const Contacts = () => {
         </Link>
       </div>
       <div className="ml-[22px]">
-        <Button title="Оставить заявку" />
+        <Button title="Оставить заявку" onClick={openModal} />
       </div>
     </div>
   );

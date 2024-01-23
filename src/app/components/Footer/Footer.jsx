@@ -2,7 +2,7 @@ import { NavLinks } from "../NavLinks/NavLinks";
 import { Logo } from "../Logo/Logo";
 import { Contacts } from "../Contacts/Contacts";
 
-export const Footer = () => {
+export const Footer = ({ openModal }) => {
   return (
     <footer>
       <div className="bg-blue mt-7">
@@ -10,7 +10,7 @@ export const Footer = () => {
       </div>
       <div className="flex justify-center md:justify-between container mx-auto px-3">
         <Logo />
-        <Contacts />
+        <Contacts openModal={openModal} />
       </div>
     </footer>
   );

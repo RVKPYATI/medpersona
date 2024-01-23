@@ -1,3 +1,7 @@
+"use client";
+import { useState } from "react";
+import { FormSubmit } from "./components/ui/FormSubmit/FormSubmit";
+import { Modal } from "./components/ui/Modal/Modal";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 import { CandidateSection } from "./components/Main/CandidateSection";
@@ -9,18 +13,30 @@ import { ReviewsSection } from "./components/Main/ReviewsSection";
 import { VacancySection } from "./components/Main/VacancySection";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
-      <Header />
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <FormSubmit />
+      </Modal>
+      <Header openModal={openModal} />
       <Main>
-        <HeroSection />
+        <HeroSection openModal={openModal} />
         <DentistSection />
         <MedicalSection />
         <VacancySection />
         <CandidateSection />
         <ReviewsSection />
       </Main>
-      <Footer />
+      <Footer openModal={openModal} />
     </>
   );
 }

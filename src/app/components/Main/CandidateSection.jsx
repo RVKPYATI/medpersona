@@ -1,6 +1,63 @@
+"use client";
+import { useState } from "react";
+import MaskedInput from "react-text-mask";
+import Image from "next/image";
 import { Button } from "../ui/Button/Button";
 
 export const CandidateSection = () => {
+  const [res, setRes] = useState(false);
+  const [nameFile, setNameFile] = useState();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    resume: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    if (name === "resume") {
+      setNameFile(files[0].name);
+      // Handle file input separately
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: files[0],
+      }));
+    } else {
+      // Handle other inputs
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("resume", formData.resume); // Append the file
+
+      const response = await fetch("/api/telegram", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      if (response.ok) {
+        console.log("Request sent successfully!");
+        setRes(true);
+        // Additional actions on successful request
+      } else {
+        console.error("Failed to send request");
+        // Additional actions in case of an error
+      }
+    } catch (error) {
+      console.error("Error while sending request:", error);
+    }
+  };
   return (
     <section className="container mx-auto py-14">
       <div className="bg-blue rounded-xl px-12 pt-9 pb-14 text-[#FFFFFF]">
@@ -9,17 +66,45 @@ export const CandidateSection = () => {
           Отправьте ваше резюме и прикрепите портфолио, наш менеджер
           проконсультирует вас и подробнее расскажет о том, как найти работу
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row md:flex-wrap justify-between items-center  text-black15">
             <input
+              name="name"
               type="text"
+              value={formData.name}
+              onChange={handleChange}
               className="w-full md:w-64 h-12 rounded py-3 px-5 placeholder:text-[#707070] outline-none mb-2"
               placeholder="Ваше имя"
+              required
             />
-            <input
-              type="phone"
+            <MaskedInput
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
               className="w-full md:w-64  h-12 rounded py-3 px-5 placeholder:text-[#707070] outline-none mb-2"
               placeholder="Номер вашего телефона"
+              mask={[
+                "+",
+                "7",
+                " ",
+                "(",
+                /\d/,
+                /\d/,
+                /\d/,
+                ")",
+                " ",
+                /\d/,
+                /\d/,
+                /\d/,
+                "-",
+                /\d/,
+                /\d/,
+                "-",
+                /\d/,
+                /\d/,
+              ]}
+              required
             />
             <label
               htmlFor="inputFile"
@@ -39,9 +124,29 @@ export const CandidateSection = () => {
                 />
               </svg>
             </label>
-            <input type="file" className="hidden" id="inputFile" />
-
-            <Button title="ОТПРАВИТЬ" style="bg-blue2 w-full md:w-64 mb-2" />
+            {nameFile && (
+              <p className="text-white">Выбранный файл: {nameFile}</p>
+            )}
+            <input
+              type="file"
+              className="hidden"
+              id="inputFile"
+              name="resume"
+              onChange={handleChange}
+            />
+            {res ? (
+              <span className="flex gap-1 justify-center items-center text-white">
+                <Image
+                  src="/check-white.svg"
+                  width={32}
+                  height={32}
+                  alt="check"
+                />
+                Данные успешно отправлены
+              </span>
+            ) : (
+              <Button title="ОТПРАВИТЬ" style="bg-blue2 w-full md:w-64 mb-2" />
+            )}
           </div>
         </form>
       </div>
