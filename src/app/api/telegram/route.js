@@ -13,7 +13,7 @@ export async function POST(req) {
   if (file.size) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const path = `/tmp/${file.name}`;
+    const path = `./tmp/${file.name}`;
 
     await writeFile(path, buffer); //Запись в файл
     await sendMessageTelegram(path, name, phone, doctor); //Отправка файла в телеграм
