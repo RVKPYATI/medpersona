@@ -1,1 +1,1 @@
-export const CHAT_ID = "-4098789378";
+export const CHAT_ID = "-4010766583";

@@ -37,7 +37,10 @@ export const NavLinks = ({ show }) => {
           </Link>
         </li>
         <li>
-          <Link href="#" className="text-[#FFFFFF] hover:bg-[#7198cc] p-2">
+          <Link
+            href="/contacts"
+            className="text-[#FFFFFF] hover:bg-[#7198cc] p-2"
+          >
             Контакты
           </Link>
         </li>
