@@ -106,7 +106,7 @@ export const NavLinks = ({ show }) => {
               </Link>
             </li>
             <li className="p-7">
-              <Link href="#" className="text-[#FFFFFF] ">
+              <Link href="/contacts" className="text-[#FFFFFF] ">
                 Контакты
               </Link>
             </li>
