@@ -4,7 +4,7 @@ import Link from "next/link";
 export const ContactPage = () => {
   return (
     <div className="flex flex-wrap gap-4 mt-6">
-      <div className="">
+      {/* <div className="">
         <h1 className="text-5xl font-bold mb-8 ">Как с нами связаться?</h1>
         <p className="font-medium">
           Связаться с нами можно по следующим каналам
@@ -46,8 +46,8 @@ export const ContactPage = () => {
               <div className="font-medium">@gofmanmedpersona</div>
             </div>
           </Link>
-        </div>
-      </div>
+        </div> 
+      </div>*/}
     </div>
   );
 };
